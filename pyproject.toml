@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "mlp-test"
+version = "0.1.0"
+description = ""
+authors = ["Hongpei Zheng <zhenghongpei@gmail.com>"]
+readme = "README.md"
+packages = [{include = "mlp_test"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
