@@ -32,7 +32,7 @@ def sigmoid(x):
 
 
 if __name__ == '__main__':
-    tran_data_num = 6000
+    tran_data_num = 60000
     raw_train_images = load_idx3_ubyte(Path('data/handwritten_digits/train-images.idx3-ubyte'))
     raw_train_labels = load_idx1_ubyte(Path('data/handwritten_digits/train-labels.idx1-ubyte'))
 
@@ -60,6 +60,7 @@ if __name__ == '__main__':
         a_x = train_images @ weight_array + b.T
         y_x = sigmoid(a_x)
         delta = expect_output - y_x
+        # a = 1 - y_x
         # a = alpha * (delta.T @ y_x @ (1 - y_x).T @ train_images).T
         weight_array += alpha * (train_images.T @ delta)
         b += alpha * np.sum(delta, axis=0).reshape(10, 1)
