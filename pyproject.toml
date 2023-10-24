@@ -4,11 +4,12 @@ version = "0.1.0"
 description = ""
 authors = ["Hongpei Zheng <zhenghongpei@gmail.com>"]
 readme = "README.md"
-packages = [{include = "mlp_test"}]
+packages = []
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
 numpy = "^1.26.1"
+matplotlib = "^3.8.0"
 
 
 [build-system]
