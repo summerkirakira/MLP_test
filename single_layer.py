@@ -31,6 +31,15 @@ def sigmoid(x):
     return 1 / (1 + np.exp(-x))
 
 
+def load_data():
+    raw_train_images = load_idx3_ubyte(Path('data/handwritten_digits/train-images.idx3-ubyte'))
+    raw_train_labels = load_idx1_ubyte(Path('data/handwritten_digits/train-labels.idx1-ubyte'))
+
+    test_images = load_idx3_ubyte(Path('data/handwritten_digits/t10k-images.idx3-ubyte'))
+    test_labels = load_idx1_ubyte(Path('data/handwritten_digits/t10k-labels.idx1-ubyte'))
+    return raw_train_images, raw_train_labels, test_images, test_labels
+
+
 if __name__ == '__main__':
     tran_data_num = 1000
     raw_train_images = load_idx3_ubyte(Path('data/handwritten_digits/train-images.idx3-ubyte'))

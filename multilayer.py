@@ -81,9 +81,9 @@ def main():
 
     np.random.seed(11451)
 
-    layer_1 = np.random.rand(784, 500) - 0.5
-    b_1 = np.random.rand(1, 500) - 0.5
-    layer_2 = np.random.rand(500, 20) - 0.5
+    layer_1 = np.random.rand(784, 100) - 0.5
+    b_1 = np.random.rand(1, 100) - 0.5
+    layer_2 = np.random.rand(100, 20) - 0.5
     b_2 = np.random.rand(1, 20) - 0.5
     layer_3 = np.random.rand(20, 10) - 0.5
     b_3 = np.random.rand(1, 10) - 0.5

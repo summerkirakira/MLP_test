@@ -10,7 +10,19 @@ packages = []
 python = ">=3.10,<3.13"
 numpy = "^1.26.1"
 matplotlib = "^3.8.0"
+torch = "^2.1.0"
 
+
+[[tool.poetry.source]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cpu"
+priority = "explicit"
+
+
+[[tool.poetry.source]]
+name = "pytorch-gpu"
+url = "https://download.pytorch.org/whl/cu118"
+priority = "explicit"
 
 [build-system]
 requires = ["poetry-core"]
