@@ -32,7 +32,7 @@ def sigmoid(x):
 
 
 if __name__ == '__main__':
-    tran_data_num = 60000
+    tran_data_num = 1000
     raw_train_images = load_idx3_ubyte(Path('data/handwritten_digits/train-images.idx3-ubyte'))
     raw_train_labels = load_idx1_ubyte(Path('data/handwritten_digits/train-labels.idx1-ubyte'))
 
@@ -59,13 +59,22 @@ if __name__ == '__main__':
     while iter_num < 5000:
         a_x = train_images @ weight_array + b.T
         y_x = sigmoid(a_x)
-        delta = expect_output - y_x
+        delta = y_x - expect_output
         # a = 1 - y_x
         # a = alpha * (delta.T @ y_x @ (1 - y_x).T @ train_images).T
-        weight_array += alpha * (train_images.T @ delta)
-        b += alpha * np.sum(delta, axis=0).reshape(10, 1)
-        if (iter_num % 1000) == 0:
-            print(f'iter_num: {iter_num} error: {np.sum(delta ** 2)}')
+        total_b_gradient = delta * (1 - y_x) * y_x
+        total_w_gradient = train_images.T @ total_b_gradient
+        # total_b_gradient = np.zeros((1, 10))
+
+        # for i in range(tran_data_num):
+        #     x = train_images[i].reshape((784, 1))
+        #     a = (delta[i] * (1 - y_x[i]) * y_x[i]).reshape((1, 10))
+        #     total_b_gradient += a
+        #     total_gradient += x @ a
+
+        weight_array -= alpha * total_w_gradient
+        b -= alpha * total_b_gradient.sum(axis=0).reshape((10, 1))
+        print(f'iter_num: {iter_num} error: {np.sum(delta ** 2)}')
         iter_num += 1
 
     def predict(x):
