@@ -104,6 +104,8 @@ if __name__ == '__main__':
         ax.axis('off')
         ax.set_title(f"{image_to_be_shown[i]['error']} -> {image_to_be_shown[i]['expect']}")
 
+    plt.suptitle(
+        f'Single layer perceptron\nTrain examples: {tran_data_num}, Iter number: {iter_num}, Error rate: {error_num / len(test_images)}')
     plt.tight_layout()
     plt.show()
     # print(train_images.shape)
