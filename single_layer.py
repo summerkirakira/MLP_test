@@ -32,11 +32,11 @@ def sigmoid(x):
 
 
 def load_data():
-    raw_train_images = load_idx3_ubyte(Path('data/MNIST/raw/train-images.idx3-ubyte'))
-    raw_train_labels = load_idx1_ubyte(Path('data/MNIST/raw/train-labels.idx1-ubyte'))
+    raw_train_images = load_idx3_ubyte(Path('data/MNIST/raw/train-images-idx3-ubyte'))
+    raw_train_labels = load_idx1_ubyte(Path('data/MNIST/raw/train-labels-idx1-ubyte'))
 
-    test_images = load_idx3_ubyte(Path('data/MNIST/raw/t10k-images.idx3-ubyte'))
-    test_labels = load_idx1_ubyte(Path('data/MNIST/raw/t10k-labels.idx1-ubyte'))
+    test_images = load_idx3_ubyte(Path('data/MNIST/raw/t10k-images-idx3-ubyte'))
+    test_labels = load_idx1_ubyte(Path('data/MNIST/raw/t10k-labels-idx1-ubyte'))
     return raw_train_images, raw_train_labels, test_images, test_labels
 
 
