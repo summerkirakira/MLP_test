@@ -41,12 +41,12 @@ def load_data():
 
 
 if __name__ == '__main__':
-    tran_data_num = 1000
-    raw_train_images = load_idx3_ubyte(Path('data/MNIST/raw/ttrain-images.idx3-ubyte'))
-    raw_train_labels = load_idx1_ubyte(Path('data/MNIST/raw/ttrain-labels.idx1-ubyte'))
+    tran_data_num = 60000
+    raw_train_images = load_idx3_ubyte(Path('data/MNIST/raw/train-images-idx3-ubyte'))
+    raw_train_labels = load_idx1_ubyte(Path('data/MNIST/raw/train-labels-idx1-ubyte'))
 
-    test_images = load_idx3_ubyte(Path('data/MNIST/raw/tt10k-images.idx3-ubyte'))
-    test_labels = load_idx1_ubyte(Path('data/MNIST/raw/tt10k-labels.idx1-ubyte'))
+    test_images = load_idx3_ubyte(Path('data/MNIST/raw/t10k-images-idx3-ubyte'))
+    test_labels = load_idx1_ubyte(Path('data/MNIST/raw/t10k-labels-idx1-ubyte'))
 
     train_images = raw_train_images[:tran_data_num]
     train_labels = raw_train_labels[:tran_data_num]
@@ -111,7 +111,7 @@ if __name__ == '__main__':
     for i, ax in enumerate(axes.flat):
         ax.imshow(test_images[image_to_be_shown[i]['index']].reshape((28, 28)), cmap='gray')
         ax.axis('off')
-        ax.set_title(f"{image_to_be_shown[i]['error']} -> {image_to_be_shown[i]['expect']}")
+        ax.set_title(f"Predicted {image_to_be_shown[i]['error']}\nActual: {image_to_be_shown[i]['expect']}")
 
     plt.suptitle(
         f'Single layer perceptron\nTrain examples: {tran_data_num}, Iter number: {iter_num}, Error rate: {error_num / len(test_images)}')

@@ -128,7 +128,7 @@ def main():
     for i, ax in enumerate(axes.flat):
         ax.imshow(test_images[image_to_be_shown[i]['index']].reshape((28, 28)), cmap='gray')
         ax.axis('off')
-        ax.set_title(f"{image_to_be_shown[i]['error']} -> {image_to_be_shown[i]['expect']}")
+        ax.set_title(f"Predicted: {image_to_be_shown[i]['error']}\nActual: {image_to_be_shown[i]['expect']}")
 
     plt.suptitle(f'Multilayer perceptron\nTrain examples: {train_data_num}, Iter number: {iter_num}, Error rate: {error_num / len(test_images)}')
     plt.tight_layout()
