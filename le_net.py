@@ -153,10 +153,10 @@ def test():
         ax.set_yticks([])
 
     plt.suptitle(
-        f'LeNet5\n Epoch: 50, Batch Size: 16, Learning Rate: 0.001, Error Rate: {error_rate:.2%}')
+        f'LeNet5\n Epoch: 50, Batch Size: 16, Learning Rate: 0.001, Error Rate: {error_rate}')
     plt.tight_layout()
     plt.show()
 
 
 if __name__ == '__main__':
-    main()
+    test()
