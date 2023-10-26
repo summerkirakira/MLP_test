@@ -67,11 +67,11 @@ if __name__ == '__main__':
         axes[0, i].imshow(train_data_set[i].reshape((5, 5)), cmap='gray')
         axes[0, i].set_xticks([])
         axes[0, i].set_yticks([])
-        axes[0, i].set_title(f"Train label: 0")
+        axes[0, i].set_xlabel(f"Train label: 0")
         axes[1, i].imshow(train_data_set[i + 4].reshape((5, 5)), cmap='gray')
         axes[1, i].set_xticks([])
         axes[1, i].set_yticks([])
-        axes[1, i].set_title(f"Train label: 1")
+        axes[1, i].set_xlabel(f"Train label: 1")
 
     for i in range(len(test_data_set)):
         response = test_data_set[i]  @ weight_array + b
@@ -84,7 +84,7 @@ if __name__ == '__main__':
 
         actual = 0 if test_labels[i] == -1 else 1
 
-        axes[2, i].set_title(f"Predicted: {predict}\nActual: {actual}")
+        axes[2, i].set_xlabel(f"Predicted: {predict}\nActual: {actual}")
 
     plt.suptitle(f"Single Perceptron (8 for training, 4 for testing)")
     plt.tight_layout()
