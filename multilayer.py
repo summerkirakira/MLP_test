@@ -88,7 +88,7 @@ def main():
     layer_3 = np.random.rand(20, 10) - 0.5
     b_3 = np.random.rand(1, 10) - 0.5
 
-    iter_num = 2000
+    iter_num = 1000
 
     for i in range(iter_num):
         start_time = time.time()
@@ -127,8 +127,10 @@ def main():
     image_to_be_shown = np.random.choice(error_list, 25)
     for i, ax in enumerate(axes.flat):
         ax.imshow(test_images[image_to_be_shown[i]['index']].reshape((28, 28)), cmap='gray')
-        ax.axis('off')
-        ax.set_title(f"Predicted: {image_to_be_shown[i]['error']}\nActual: {image_to_be_shown[i]['expect']}")
+        # ax.axis('off')
+        ax.set_xticks([])
+        ax.set_yticks([])
+        ax.set_xlabel(f"Predicted: {image_to_be_shown[i]['error']}\nActual: {image_to_be_shown[i]['expect']}")
 
     plt.suptitle(f'Multilayer perceptron\nTrain examples: {train_data_num}, Iter number: {iter_num}, Error rate: {error_num / len(test_images)}')
     plt.tight_layout()

@@ -17,7 +17,7 @@ class MyLeNet5(nn.Module):
         self.conv3 = nn.Conv2d(6, 16, 5)
         self.conv4 = nn.AvgPool2d(2, 2)
         self.conv5 = nn.Conv2d(16, 120, 5)
-        self.fc1 = nn.Linear(120, 84)
+        self.fc6 = nn.Linear(120, 84)
         self.output = nn.Linear(84, 10)
 
         self.sigmoid = nn.Sigmoid()
@@ -30,7 +30,7 @@ class MyLeNet5(nn.Module):
         x = self.conv4(x)
         x = self.conv5(x)
         x = self.flatten(x)
-        x = self.fc1(x)
+        x = self.fc6(x)
         x = self.output(x)
         return x
 
@@ -38,23 +38,23 @@ class MyLeNet5(nn.Module):
 def get_data():
     # raw_train_images, raw_train_labels, raw_test_images, raw_test_labels = load_data()
     data_transform = transforms.Compose([
-        transforms.ToTensor()
+        transforms.ToTensor(),
+        transforms.Normalize([0], [1])
     ])
     train_data = datasets.MNIST('data', train=True, transform=data_transform, download=True)
-    train_data_loader = torch.utils.data.DataLoader(train_data, batch_size=16, shuffle=True)
+    train_data_loader = torch.utils.data.DataLoader(train_data, batch_size=1, shuffle=True)
 
     test_data = datasets.MNIST('data', train=False, transform=data_transform, download=True)
-    test_data_loader = torch.utils.data.DataLoader(test_data, batch_size=16, shuffle=True)
+    test_data_loader = torch.utils.data.DataLoader(test_data, batch_size=1, shuffle=True)
 
     return train_data_loader, test_data_loader, train_data, test_data
 
 
-def train(model, train_data_loader, loss_func, optimizer, scheduler):
+def train(model, train_data_loader, loss_func, optimizer):
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
     loss, acc, n = 0, 0, 0
     for batch_idx, (data, target) in enumerate(train_data_loader):
         X, y = data.to(device), target.to(device)
-
         output = model(X)
         cur_loss = loss_func(output, y)
         _, pred = torch.max(output, 1)
@@ -91,6 +91,7 @@ def validate(model, test_data_loader, loss_func):
         print(f"test loss: {loss / n}, test acc: {acc / n}")
     return acc / n
 
+
 def main():
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
     model = MyLeNet5().to(device)
@@ -109,7 +110,7 @@ def main():
 
     for i in range(epoch):
         print(f"epoch: {i + 1} \n {'-' * 20} \n")
-        train(model, train_data_loader, loss_func, optimizer, scheduler)
+        train(model, train_data_loader, loss_func, optimizer)
         a = validate(model, test_data_loader, loss_func)
         scheduler.step()
         if a > min_acc:
@@ -153,7 +154,7 @@ def test():
         ax.set_yticks([])
 
     plt.suptitle(
-        f'LeNet5\n Epoch: 50, Batch Size: 16, Learning Rate: 0.001, Error Rate: {error_rate}')
+        f'LeNet5\n Epoch: 25, Batch Size: 16, Learning Rate: 0.001, Error Rate: {error_rate}')
     plt.tight_layout()
     plt.show()
 

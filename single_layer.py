@@ -110,8 +110,10 @@ if __name__ == '__main__':
     image_to_be_shown = np.random.choice(error_list, 25)
     for i, ax in enumerate(axes.flat):
         ax.imshow(test_images[image_to_be_shown[i]['index']].reshape((28, 28)), cmap='gray')
-        ax.axis('off')
-        ax.set_title(f"Predicted {image_to_be_shown[i]['error']}\nActual: {image_to_be_shown[i]['expect']}")
+        # ax.axis('off')
+        ax.set_xlabel(f"Predicted {image_to_be_shown[i]['error']}\nActual: {image_to_be_shown[i]['expect']}")
+        ax.set_xticks([])
+        ax.set_yticks([])
 
     plt.suptitle(
         f'Single layer perceptron\nTrain examples: {tran_data_num}, Iter number: {iter_num}, Error rate: {error_num / len(test_images)}')
