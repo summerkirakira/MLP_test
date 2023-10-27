@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "mlp-test"
 version = "0.1.0"
-description = ""
+description = "test"
 authors = ["Hongpei Zheng <zhenghongpei@gmail.com>"]
 readme = "README.md"
 packages = []
