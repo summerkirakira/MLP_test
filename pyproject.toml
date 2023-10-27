@@ -11,6 +11,7 @@ python = ">=3.10,<3.13"
 numpy = "^1.26.1"
 matplotlib = "^3.8.0"
 torch = "^2.1.0"
+torchvision = "^0.16.0"
 
 
 [[tool.poetry.source]]

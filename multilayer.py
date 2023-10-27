@@ -134,7 +134,7 @@ def main():
 
     plt.suptitle(f'Multilayer perceptron\nTrain examples: {train_data_num}, Iter number: {iter_num}, Error rate: {error_num / len(test_images)}')
     plt.tight_layout()
-    plt.show()
+    plt.savefig('temp.png')
 
 
 if __name__ == '__main__':

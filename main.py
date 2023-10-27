@@ -88,6 +88,6 @@ if __name__ == '__main__':
 
     plt.suptitle(f"Single Perceptron (8 for training, 4 for testing)")
     plt.tight_layout()
-    plt.show()
+    plt.savefig("temp.png")
 
     # print(weight_array)

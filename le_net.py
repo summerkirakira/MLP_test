@@ -5,6 +5,10 @@ from torch.optim import lr_scheduler
 from torchvision import datasets, transforms
 import random
 import numpy as np
+from pathlib import Path
+import os
+
+current_path = Path(os.path.dirname(__file__))
 
 
 class MyLeNet5(nn.Module):
@@ -115,7 +119,8 @@ def main():
         scheduler.step()
         if a > min_acc:
             min_acc = a
-            torch.save(model.state_dict(), 'model/lenet5.pth')
+            with (current_path / 'model/lenet5.pth').open('wb') as f:
+                torch.save(model.state_dict(), f)
             print('best model saved')
     print(f"best acc: {min_acc}")
 
@@ -129,7 +134,7 @@ def test():
 
     err_list = []
     model = MyLeNet5().to(device)
-    model.load_state_dict(torch.load('model/lenet5.pth'))
+    model.load_state_dict(torch.load(current_path / 'model/lenet5.pth'))
     label = [str(i) for i in range(10)]
     for i in range(len(test_data)):
         X, y = test_data[i]
@@ -156,8 +161,8 @@ def test():
     plt.suptitle(
         f'LeNet5\n Epoch: 25, Batch Size: 16, Learning Rate: 0.001, Error Rate: {error_rate}')
     plt.tight_layout()
-    plt.show()
+    plt.savefig('temp.png')
 
 
 if __name__ == '__main__':
-    test()
+    main()
